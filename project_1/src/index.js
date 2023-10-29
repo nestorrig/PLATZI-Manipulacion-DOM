@@ -1,5 +1,13 @@
 const url = 'https://platzi-avo.vercel.app'
 const appNode = document.querySelector('#app')
+const formatPrice = (price) => {
+    const newPrice = new window.Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'GBP',
+    }).format(price)
+
+    return newPrice
+}
 
 window.fetch(`${url}/api/avo`)
     .then((respuesta) => respuesta.json())
@@ -20,7 +28,7 @@ window.fetch(`${url}/api/avo`)
             name.textContent = item.name
 
             const price = document.createElement('p')
-            price.textContent = `$${item.price}`
+            price.textContent = formatPrice(item.price)
 
             const container = document.createElement('div')
             container.append(image, name, price)
