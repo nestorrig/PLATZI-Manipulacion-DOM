@@ -1,17 +1,20 @@
 const isIntersecting = entry => {
     return entry.isIntersecting
 }
-const action = (entry) => {
-    const nodo = entry.target
-    console.log('holis');
-    // deja de ver el nodo una ves que ya fue registrado
-    observer.unobserve(nodo)
+const loadImage = (entry) => {
+    const image = entry.target
+    const url = image.dataset.src
+    console.log(url);
+    image.src = url
+    // deja de ver el image una ves que ya fue registrado
+    observer.unobserve(image)
 }
 const observer = new IntersectionObserver( entries => {
     entries
         .filter(isIntersecting)
-        .forEach(action)
+        .forEach(loadImage)
 })
 export const registerImage = image => {
     observer.observe(image)
 }
+//menor codigo en: https://platzi.com/comentario/2524515/

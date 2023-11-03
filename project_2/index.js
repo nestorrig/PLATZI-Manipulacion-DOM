@@ -1,4 +1,4 @@
-import { registerImage } from "./lazy.js";
+// import { registerImage } from "./lazy.js";
 
 const imagesContainer = document.querySelector('#Container')
 
@@ -9,8 +9,10 @@ const fox = () => Math.floor(Math.random() * (max - min) + min)
 document.querySelector('button').addEventListener('click', () => {
     const img = document.createElement('img')
     img.src = `https://randomfox.ca/images/${fox()}.jpg`
-    console.log(img.src);
+    // img.dataset.src = `https://randomfox.ca/images/${fox()}.jpg`
+    img.loading = 'lazy'
     imagesContainer.appendChild(img)
     // añadimos la imagen al registro
-    registerImage(img)
+    // registerImage(img)
+    console.log(img.src);
 })
